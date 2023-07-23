@@ -11,8 +11,8 @@ const response = document.querySelector("p");
 console.log(btn1, btn2);
 
 questionContainer.addEventListener("click", () => {
-  /* questionContainer.style.background= "red";
-    questionContainer.style.border = "3px solid teal";*/
+    /* questionContainer.style.background= "red";
+      questionContainer.style.border = "3px solid teal";*/
     questionContainer.classList.toggle("question-clicked");
 });
 
@@ -71,7 +71,7 @@ window.addEventListener("mouseup", () => {
 });
 
 questionContainer.addEventListener("mouseenter", () => {
-    questionContainer.style.background= "rgba(0,0,0,0.6)";
+    questionContainer.style.background = "rgba(0,0,0,0.6)";
 });
 
 questionContainer.addEventListener("mouseout", () => {
@@ -95,28 +95,28 @@ const ring = (key) => {
 };
 
 document.addEventListener("keypress", (e) => {
-   key.textContent = e.key;
-   
-   if (e.key === "j") {
-       keypressContainer.style.background = "pink";
-   } else if (e.key === "h") {
-       keypressContainer.style.background = "teal";
-   } else {
-       keypressContainer.style.background = "red";
-   }
-   if (e.key === "z")
-   ring(e.key);
+    key.textContent = e.key;
+
+    if (e.key === "j") {
+        keypressContainer.style.background = "pink";
+    } else if (e.key === "h") {
+        keypressContainer.style.background = "teal";
+    } else {
+        keypressContainer.style.background = "red";
+    }
+    if (e.key === "z")
+        ring(e.key);
 });
 
 
-//------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 // Scroll Event
 
 const nav = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
     console.log(window.scrollY);
-    
+
     if (window.scrollY > 120) {
         nav.style.top = 0;
     } else {
@@ -124,7 +124,7 @@ window.addEventListener("scroll", () => {
     }
 });
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 // Form Events
 const inputName = document.querySelector('input[type="text"]');
 const select = document.querySelector("select");
@@ -144,14 +144,14 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
 
- if(cgv.checked) {
-     document.querySelector('form > div').innerHTML = `
+    if (cgv.checked) {
+        document.querySelector('form > div').innerHTML = `
      <h3>Pseudo : ${pseudo}</h3>
      <h4>Langage prefere : ${language}</h4>
      `;
- } else {
-     alert("Veuillez accepter les CGV")
- }
+    } else {
+        alert("Veuillez accepter les CGV")
+    }
 });
 
 
@@ -165,17 +165,106 @@ window.addEventListener("load", () => {
 // ForEach
 // const boxes = document.getElementsByClassName("box");
 const boxes = document.getElementsByClassName("box");
+console.log(boxes);
 
-boxes.forEach((box) => {
+Array.from(boxes).forEach((box) => {
     box.addEventListener("click", (e) => {
-    box.style.transform = "scale(0.7)";
-    });   
+        box.style.transform = "scale(0.7)";
+    });
 });
+console.log(Array);
 
 
 //-------------------------------------------------------------------------
 // addEventListener Vs onclick
-document.body.onclick = () => {
+document.body.onclick = function() {
+ console.log("Scroll !");
+};
+
+// Bubbling => fin (de base l'eventlistener est parametre en mode Bublbing)
+document.body.addEventListener("click", () => {
+    console.log("click 1 !");
+});
+
+// Usecapture
+document.body.addEventListener("click", () => {
+    console.log("click 2 !");
+}, true);
+
+// https://gomakethings.com/what-is-that-third-argument-on-the-js-addeventlistener-method-and-when-do-you-need-it/
+
+//------------------------------------------------------------------------------------------------
+// Stop propagation
+
+// questionContainer.addEventListener("click", (e) => {
+  // { alert("Test !");}
+  //  e.stopPropagation();
+// });
+
+// removeEventListener
+
+//-------------------------------------------------------------
+// BOM
+
+console.log(window.innerHeight);
+ console.log(window.scrollY);
+// window.open("http://google.com", "cours js", "height=600, width=800");
+// window.close()
+
+// Evenements adosses a window
+// alert("hello");
+
+// confirm
+btn2.addEventListener("click", () => {
+    confirm("Voulez vous vraiment vous tromper ?");
+});
+
+// prompt
+btn1.addEventListener("click", () => {
+    let answer = prompt("Entrez votre nom !");
     
-}
+    questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
+});
+
+// Timer, compte a rebours
+setTimeout(() => {
+    questionContainer.style.borderRadius = "300px";
+}, 2000);
+
+let interval = setInterval(() => {
+    document.body.innerHTML += `
+    <div class='box'>
+     <h2>Nouvelle Boite !</h2>
+    </div>
+    `;
+}, 1000);
+
+document.body.addEventListener("click", () => {
+    clearInterval(interval);
+});
+
+// Location
+//console.log(location.href);
+//location.replace("http://rire.fr");
+
+//window.onload = () => {
+   // location.href = ("http://twitter.com");
+//};
+
+// Navigator
+// console.log(navigator.userAgent);
+
+// Geolocalisation
+
+// History
+// console.log(history);
+// window.history.back();
+// history.go(-2)
+
+//----------------------------------------------------------------------
+// SetProperty
+window.addEventListener("mousemove", (e) => {
+    nav.style.setProperty("--x", e.layerX + "px");
+    nav.style.setProperty("--y", e.layerY + "px");        
+});
 
