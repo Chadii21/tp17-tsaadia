@@ -90,7 +90,8 @@ const key = document.getElementById("key");
 
 const ring = (key) => {
     const audio = new Audio();
-    audio.src = key + "./";
+    audio.src = key + "z.mp3";
+    console.log(audio.src);
     audio.play();
 };
 
@@ -196,10 +197,10 @@ document.body.addEventListener("click", () => {
 //------------------------------------------------------------------------------------------------
 // Stop propagation
 
-// questionContainer.addEventListener("click", (e) => {
-  // { alert("Test !");}
-  //  e.stopPropagation();
-// });
+//questionContainer.addEventListener("click", (e) => {
+ //  { alert("Test !");}
+  e.stopPropagation();
+ //});
 
 // removeEventListener
 
@@ -222,8 +223,7 @@ btn2.addEventListener("click", () => {
 // prompt
 btn1.addEventListener("click", () => {
     let answer = prompt("Entrez votre nom !");
-    
-    questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
+  questionContainer.innerHTML += "<h3>Bravo " + answer + "</h3>";
 });
 
 // Timer, compte a rebours
@@ -231,24 +231,24 @@ setTimeout(() => {
     questionContainer.style.borderRadius = "300px";
 }, 2000);
 
-let interval = setInterval(() => {
-    document.body.innerHTML += `
-    <div class='box'>
-     <h2>Nouvelle Boite !</h2>
-    </div>
-    `;
-}, 1000);
+//let interval = setInterval(() => {
+   // document.body.innerHTML += `
+   // <div class='box'>
+   //  <h2>Nouvelle Boite !</h2>
+   // </div>
+   // `;
+//}, 1000);
 
-document.body.addEventListener("click", () => {
-    clearInterval(interval);
-});
+//document.body.addEventListener("click", () => {
+   // clearInterval(interval);
+//});
 
 // Location
 //console.log(location.href);
-//location.replace("http://rire.fr");
+//location.replace("http://facebook.fr");
 
 //window.onload = () => {
-   // location.href = ("http://twitter.com");
+  //  location.href = ("http://twitter.com");
 //};
 
 // Navigator
